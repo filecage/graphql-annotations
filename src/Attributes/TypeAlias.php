@@ -2,6 +2,7 @@
 
 namespace Filecage\GraphQL\Annotations\Attributes;
 
+use BackedEnum;
 use UnitEnum;
 
 #[\Attribute]
@@ -16,8 +17,12 @@ final class TypeAlias {
     function __construct (public readonly string|UnitEnum $typeAlias) {}
 
     function getTypeAlias () : string {
-        if ($this->typeAlias instanceof \StringBackedEnum) {
-            return $this->typeAlias->value;
+        if ($this->typeAlias instanceof BackedEnum) {
+            $typeAlias = $this->typeAlias->value;
+
+            if (is_string($typeAlias)) {
+                return $typeAlias;
+            }
         }
 
         if ($this->typeAlias instanceof UnitEnum) {
