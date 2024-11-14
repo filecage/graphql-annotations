@@ -4,7 +4,7 @@ namespace Filecage\GraphQL\Annotations\Attributes;
 
 use Filecage\GraphQL\Annotations\Enums\ScalarType;
 
-#[\Attribute]
+#[\Attribute(\Attribute::IS_REPEATABLE | \Attribute::TARGET_CLASS | \Attribute::TARGET_METHOD | \Attribute::TARGET_PROPERTY)]
 /**
  * To clarify array contents
  */
